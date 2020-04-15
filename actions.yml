@@ -1,0 +1,33 @@
+name: 'Octopress builder'
+description: 'Build and deploy Octopress site'
+author: 'rcmdnk'
+branding:
+  icon: 'upload-cloud'
+  color: 'gray-dark'
+
+inputs:
+  git_user_email:
+    description: 'Git user email'
+    required: true
+  git_user_name:
+    description: 'Git user name'
+    required: true
+  ssh_key:
+    description: 'ssh key for the deployment'
+    required: true
+  known_hosts:
+    description: 'known_hosts of the destination server'
+    default: 'github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ=='
+    required: false
+  deploy_option:
+    description: 'Deploy option for Octopress rake deploy'
+    default: 'push_ex'
+    required: false
+  minify:
+    description: 'Use minify or not (or do nothing for other than octogray'
+    default: 'false'
+    required: false
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
