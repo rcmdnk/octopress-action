@@ -20,7 +20,7 @@ else
 fi
 
 execute mkdir -p ~/.ssh
-execute cmod 700 ~/.ssh
+execute chmod 700 ~/.ssh
 echo "$INPUT_SSH_KEY" > ~/.ssh/id_rsa
 execute chmod 700 ~/.ssh/id_rsa
 execute echo "$INPUT_KNOWN_HOSTS" > ~/.ssh/known_hosts
