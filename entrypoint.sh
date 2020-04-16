@@ -27,6 +27,6 @@ execute echo "$INPUT_KNOWN_HOSTS" > ~/.ssh/known_hosts
 execute chmod 700 ~/.ssh/known_hosts
 
 execute git config --global user.email "$INPUT_GIT_USER_EMAIL"
-execute git config --global user.name "$INPUT_GIT_USE_NAME"
+execute git config --global user.name "$INPUT_GIT_USER_NAME"
 
 execute rake deploy["$INPUT_DEPLOY_OPTION"]
