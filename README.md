@@ -24,5 +24,5 @@ git_user_email| Email of git user to deploy. | - | Yes
 git_user_name| User name of git user to deploy. | - | Yes
 ssh_key| ssh key to deploy. | - | Yes
 known_hosts| known_hosts entry for the destination server. | GitHub's key | No
-deploy_option| Option for 'rake deploy'. Valid only for octogray.| push_ex | No
-minify| Option for 'rake generate, to minify html. Valid only for octogray.| false | No
+generate_option| Option for 'rake generate, for octogray.| no_minify | No
+deploy_option| Option for 'rake deploy', for octogray.| push_ex | No

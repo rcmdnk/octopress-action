@@ -19,12 +19,12 @@ else
   execute rake generate['no_minify'] --trace
 fi
 
-execute mkdir -p ~/.ssh
-execute chmod 700 ~/.ssh
-echo "$INPUT_SSH_KEY" > ~/.ssh/id_rsa
-execute chmod 700 ~/.ssh/id_rsa
-execute echo "$INPUT_KNOWN_HOSTS" > ~/.ssh/known_hosts
-execute chmod 700 ~/.ssh/known_hosts
+execute mkdir -p /root/.ssh
+execute chmod 700 /root/.ssh
+echo "$INPUT_SSH_KEY" > /root/.ssh/id_rsa
+execute chmod 600 /root/.ssh/id_rsa
+execute echo "$INPUT_KNOWN_HOSTS" > /root/.ssh/known_hosts
+execute chmod 600 /root/.ssh/known_hosts
 
 execute git config --global user.email "$INPUT_GIT_USER_EMAIL"
 execute git config --global user.name "$INPUT_GIT_USER_NAME"
