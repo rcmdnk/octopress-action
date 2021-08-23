@@ -31,15 +31,5 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - run: echo ${{inputs.generate_option}}
-      shell: bash
-      name: a0
-    - run: echo ${{inputs.known_hosts}} ${{inputs.git_user_email}} ${{inputs.git_user_name}} ${{inputs.deploy_option}}
-      shell: bash
-      name: a1
-    - run: echo ${{inputs.ssh_key}}
-      shell: bash
-      name: a2
     - run: ${{github.action_path}}/entrypoint.sh "${{inputs.generate_option}}" "${{inputs.ssh_key}}" "${{inputs.known_hosts}}" "${{inputs.git_user_email}}" "${{inputs.git_user_name}}" "${{inputs.deploy_option}}"
       shell: bash
-      name: bbb
