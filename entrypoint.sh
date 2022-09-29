@@ -9,12 +9,11 @@ execute () {
   echo "########################################"
   "$@"
 }
-generate_option=$1
-ssh_key=$2
-known_hosts=$3
-git_user_email=$4
-git_user_name=$5
-deploy_option=$6
+ssh_key=$1
+git_user_email=$2
+git_user_name=$3
+generate_option=$4
+deploy_option=$5
 
 execute bundle install
 execute gem update rake
@@ -30,7 +29,7 @@ execute mkdir -p ~/.ssh
 execute chmod 700 ~/.ssh
 echo "$ssh_key" > ~/.ssh/id_rsa
 execute chmod 600 ~/.ssh/id_rsa
-execute echo "$known_hosts" > ~/.ssh/known_hosts
+ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
 execute chmod 600 ~/.ssh/known_hosts
 
 execute git config --global user.email "$git_user_email"

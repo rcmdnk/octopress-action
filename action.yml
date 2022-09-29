@@ -6,18 +6,16 @@ branding:
   color: 'gray-dark'
 
 inputs:
-  git_user_email:
-    description: 'Git user email'
-    required: true
-  git_user_name:
-    description: 'Git user name'
-    required: true
   ssh_key:
     description: 'ssh key for the deployment'
     required: true
-  known_hosts:
-    description: 'known_hosts of the destination server'
-    default: 'github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ=='
+  git_user_email:
+    description: 'Git user email'
+    default: '41898282+github-actions[bot]@users.noreply.github.com'
+    required: true
+  git_user_name:
+    description: 'Git user name'
+    default: 'github-actions[bot]'
     required: true
   generate_option:
     description: 'rake generate option (for the octogray)'
@@ -31,5 +29,5 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - run: ${{github.action_path}}/entrypoint.sh "${{inputs.generate_option}}" "${{inputs.ssh_key}}" "${{inputs.known_hosts}}" "${{inputs.git_user_email}}" "${{inputs.git_user_name}}" "${{inputs.deploy_option}}"
+    - run: ${{github.action_path}}/entrypoint.sh "${{inputs.ssh_key}}" "${{inputs.git_user_email}}" "${{inputs.git_user_name}}" "${{inputs.generate_option}}" "${{inputs.deploy_option}}"
       shell: bash
