@@ -16,7 +16,6 @@ generate_option=$4
 deploy_option=$5
 
 execute bundle install
-execute gem update rake
 execute rake integrate
 
 if [ "$generate_option" = "1" ] || [ "${generate_option^^}" = "TRUE" ];then
