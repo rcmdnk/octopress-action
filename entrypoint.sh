@@ -15,7 +15,6 @@ git_user_name=$3
 generate_option=$4
 deploy_option=$5
 
-execute bundle install
 execute rake integrate
 
 if [ "$generate_option" = "1" ] || [ "${generate_option^^}" = "TRUE" ];then

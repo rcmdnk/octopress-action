@@ -6,28 +6,55 @@ branding:
   color: 'gray-dark'
 
 inputs:
+  checkout:
+    description: 'Checkout repository. Either true or false.'
+    default: 'true'
+  imagemagick:
+    description: 'Install imagemagick. Either true or false.'
+    default: 'true'
+  ruby:
+    description: 'Install ruby. Either true or false.'
+    default: 'true'
+  ruby-version:
+    description: 'Ruby version to be installed'
+    default: '3.4'
+  bundle-cache:
+    description: 'Run "bundle install", and cache the result automatically. Either true or false.'
+    default: 'false'
   ssh_key:
     description: 'ssh key for the deployment'
-    required: true
   git_user_email:
     description: 'Git user email'
     default: '41898282+github-actions[bot]@users.noreply.github.com'
-    required: true
   git_user_name:
     description: 'Git user name'
     default: 'github-actions[bot]'
-    required: true
   generate_option:
     description: 'rake generate option (for the octogray)'
     default: 'no_minify'
-    required: true
   deploy_option:
     description: 'Deploy option for Octopress rake deploy (for the octogray)'
     default: 'push_ex'
-    required: true
+
 
 runs:
   using: 'composite'
   steps:
-    - run: ${{github.action_path}}/entrypoint.sh "${{inputs.ssh_key}}" "${{inputs.git_user_email}}" "${{inputs.git_user_name}}" "${{inputs.generate_option}}" "${{inputs.deploy_option}}"
+    - uses: actions/checkout@v4
+      if: ${{ inputs.checkout == 'true' }}
+      with:
+        submodules: recursive
+    - name: Install Imagemagick
+      if: ${{ inputs.imagemagick == 'true' }}
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y imagemagick --fix-missing
+      shell: bash
+    - uses: ruby/setup-ruby@v1
+      if: ${{ inputs.ruby == 'true' }}
+      with:
+        ruby-version: ${{ inputs.ruby-version }}
+        bundler-cache: ${{ inputs.bundle-cache }}
+    - name: Build
+      run: ${{github.action_path}}/entrypoint.sh "${{inputs.ssh_key}}" "${{inputs.git_user_email}}" "${{inputs.git_user_name}}" "${{inputs.generate_option}}" "${{inputs.deploy_option}}"
       shell: bash
