@@ -20,7 +20,7 @@ inputs:
     default: '3.4'
   bundle-cache:
     description: 'Run "bundle install", and cache the result automatically. Either true or false.'
-    default: 'false'
+    default: 'true'
   ssh_key:
     description: 'ssh key for the deployment'
   git_user_email:
